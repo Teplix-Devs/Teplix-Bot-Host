@@ -1,5 +1,3 @@
-process.env.GH_TOKEN = "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";
-
 const {
          exec
 } = require("child_process");
