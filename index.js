@@ -1,7 +1,7 @@
 const {
          exec
 } = require("child_process");
-const download = require("download-github-repo");
+const download = require("download-git-repo");
 const path = require("path");
 const {Octokit} = require("octokit");
 

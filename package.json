@@ -19,7 +19,6 @@
   "homepage": "https://github.com/Teplix-Devs/Teplix-Bot-Host#readme",
   "dependencies": {
     "download-git-repo": "gitlab:flippidippi/download-git-repo",
-    "download-github-repo": "^0.1.4",
     "octokit": "^2.0.14"
   }
 }
