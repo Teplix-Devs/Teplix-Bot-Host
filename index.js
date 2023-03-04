@@ -1,9 +1,6 @@
-process.env.GH_TOKEN = "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";
-
 const {
          exec
 } = require("child_process");
-const Downloader = require("nodejs-file-downloader");
 const path = require("path");
 const {Octokit} = require("octokit");
 const { writeFileSync } = require("fs");
