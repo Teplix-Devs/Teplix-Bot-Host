@@ -35,7 +35,7 @@ download("Teplix-Devs/Teplix-Bot", "code", {
          main.on("error", console.log);
 
          setTimeout(async() => {
-                  /*await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+                  await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
                            owner: 'Teplix-Devs',
                            repo: 'Teplix-Bot-Host',
                            workflow_id: 'manual.yml',
@@ -43,9 +43,9 @@ download("Teplix-Devs/Teplix-Bot", "code", {
                            headers: {
                                     'X-GitHub-Api-Version': '2022-11-28'
                            }
-                  });*/
+                  });
                   process.exit(0);
-         }, /*20 * 24 * 60 * 60 * 1000*/ 500); //20 days max uptime
+         }, /*20 * 24*/ 12 * 60 * 60 * 1000); //20 days max uptime
      });
      
 });
