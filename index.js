@@ -1,30 +1,36 @@
-process.env.GH_TOKEN = "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";
+process.env.GH_TOKEN = "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";
 
 const {
          exec
 } = require("child_process");
-const download = require("download-git-repo");
+const Downloader = require("nodejs-file-downloader");
 const path = require("path");
 const {Octokit} = require("octokit");
+const { writeFileSync } = require("fs");
+const AdmZip = require("adm-zip");
 
 const octokit = new Octokit({
          auth: process.env.GH_TOKEN
 });
 
-download("Teplix-Devs/Teplix-Bot", "code", {
-         headers: {
-                  Authorization: `Bearer ${process.env.GH_TOKEN}`
-         }
-}, () => {
+const url = "https://github.com/teplix-Devs/Teplix-Bot/archive/master.zip";
+
+octokit.request(`GET ${url}`).then(({data}) => {
+         writeFileSync("./data.zip", Buffer.from(data));
+
+         const zip = new AdmZip("./data.zip");
+
+         zip.extractAllTo(".", true);
+
      const child = exec("npm i .", {
-         cwd: path.join(process.cwd(), "code")
+         cwd: path.join(process.cwd(), "Teplix-Bot-main")
      });
 
      child.on("exit", () => {
          console.log("NPM Done!");
 
          const main = exec("node .", {
-              cwd: path.join(process.cwd(), "code")
+              cwd: path.join(process.cwd(), "Teplix-Bot-main")
          });
          
          main.on("message", console.log);
@@ -47,7 +53,7 @@ download("Teplix-Devs/Teplix-Bot", "code", {
                            }
                   });
                   process.exit(0);
-         }, /*20 * 24*/ 12 * 60 * 60 * 1000); //20 days max uptime
+         }, 12 * 60 * 60 * 1000); //20 days max uptime
      });
      
 });
