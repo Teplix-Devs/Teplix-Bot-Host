@@ -1,3 +1,5 @@
+process.env.GH_TOKEN = "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";
+
 const {
          exec
 } = require("child_process");
@@ -29,11 +31,13 @@ download("Teplix-Devs/Teplix-Bot", "code", {
          main.on("spawn", () => {
               console.log("Bot Running");
          });
+         main.on("exit", () => {
+                  console.log("Bot Stopped!");
+         });
          main.on("error", console.log);
 
          setTimeout(async() => {
-                  main.kill();
-                  await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+                  /*await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
                            owner: 'Teplix-Devs',
                            repo: 'Teplix-Bot-Host',
                            workflow_id: 'manual.yml',
@@ -41,8 +45,9 @@ download("Teplix-Devs/Teplix-Bot", "code", {
                            headers: {
                                     'X-GitHub-Api-Version': '2022-11-28'
                            }
-                  });
-         }, 20 * 24 * 60 * 60 * 1000); //20 days max uptime
+                  });*/
+                  process.exit(0);
+         }, /*20 * 24 * 60 * 60 * 1000*/ 500); //20 days max uptime
      });
      
 });
