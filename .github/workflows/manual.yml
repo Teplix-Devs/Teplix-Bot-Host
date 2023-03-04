@@ -9,13 +9,19 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
+  host:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello"
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup Nodejs
+      uses: actions/setup-node@v3
+      with:
+        node-version: latest
+    - name: Install dependencies
+      run: npm i .
+    - name: Run Bot
+      run: node .
+      env:
+        GH_TOKEN: ${{ secrets.REPO_KEY }}
