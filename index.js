@@ -54,7 +54,7 @@ octokit.request(`GET ${url}`).then(({data}) => {
                            }
                   });
                   process.exit(0);
-         }, 12 * 60 * 60 * 1000); //20 days max uptime
+        }, 5 * 60 * 60 * 1000); //20 days max uptime
      });
      
 });
