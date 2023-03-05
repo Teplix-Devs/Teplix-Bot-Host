@@ -27,7 +27,11 @@ octokit.request(`GET ${url}`).then(({data}) => {
          console.log("NPM Done!");
 
          const main = exec("node .", {
-              cwd: path.join(process.cwd(), "Teplix-Bot-main")
+              cwd: path.join(process.cwd(), "Teplix-Bot-main"),
+		  env: {
+		  	...process.env,
+			PROD: true
+		  }
          });
          
          main.on("message", console.log);
